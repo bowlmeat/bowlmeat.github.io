@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>data structure and algorithms | Bowlmeat&#39;s Blogs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="算法" />
+  
+  
+  
+  
+  <meta name="description" content="单链表与双链表  静态链表实现  单链表 核心实现 123456789101112131415161718192021222324const int N &#x3D; 100010;int ne[N], e[N], head, idx;&#x2F;&#x2F; 初始化void init()&amp;#123;    head&#x3D;-1; &#x2F;&#x2F; -1表示空节点&amp;#125;&#x2F;&#x2F; 头插法void addHead(int x)&amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Data Structure And Algorithms">
+<meta property="og:url" content="https://bowlmeat.github.io/2022/07/19/Data-Structure-And-Algorithms/index.html">
+<meta property="og:site_name" content="Bowlmeat&#39;s Blogs">
+<meta property="og:description" content="单链表与双链表  静态链表实现  单链表 核心实现 123456789101112131415161718192021222324const int N &#x3D; 100010;int ne[N], e[N], head, idx;&#x2F;&#x2F; 初始化void init()&amp;#123;    head&#x3D;-1; &#x2F;&#x2F; -1表示空节点&amp;#125;&#x2F;&#x2F; 头插法void addHead(int x)&amp;#123;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://latex.codecogs.com/svg.latex?S=1*%5Cfrac%7Bn%7D%7B2%5E2%7D+2*%5Cfrac%7Bn%7D%7B2%5E3%7D+3*%5Cfrac%7Bn%7D%7B2%5E4%7D+...">
+<meta property="og:image" content="https://latex.codecogs.com/svg.latex?S=n*(1*%5Cfrac%7B1%7D%7B2%5E2%7D+2*%5Cfrac%7B1%7D%7B2%5E3%7D+3*%5Cfrac%7B1%7D%7B2%5E4%7D+...)">
+<meta property="og:image" content="https://latex.codecogs.com/svg.latex?2*S=n*(1*%5Cfrac%7B1%7D%7B2%7D+2*%5Cfrac%7B1%7D%7B2%5E2%7D+3*%5Cfrac%7B1%7D%7B2%5E3%7D+4*%5Cfrac%7B1%7D%7B2%5E4%7D+...)">
+<meta property="og:image" content="https://latex.codecogs.com/svg.latex?%5CRightarrow%20S=2*S-S=n*(%5Cfrac%7B1%7D%7B2%7D+%5Cfrac%7B1%7D%7B2%5E2%7D+%5Cfrac%7B1%7D%7B2%5E3%7D+%5Cfrac%7B1%7D%7B2%5E4%7D+...)%3Cn*1=n">
+<meta property="article:published_time" content="2022-07-19T05:03:46.000Z">
+<meta property="article:modified_time" content="2022-07-20T10:42:24.330Z">
+<meta property="article:author" content="bowlmeat">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://latex.codecogs.com/svg.latex?S=1*%5Cfrac%7Bn%7D%7B2%5E2%7D+2*%5Cfrac%7Bn%7D%7B2%5E3%7D+3*%5Cfrac%7Bn%7D%7B2%5E4%7D+...">
+  
+    <link rel="alternate" href="/atom.xml" title="Bowlmeat&#39;s Blogs" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogoo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogoo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  
+<link rel="stylesheet" href="../../../../css/style.css">
+
+
+  
+<script src="../../../../js/jquery-3.1.1.min.js"></script>
+
+  
+<script src="../../../../js/bootstrap.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    
+<link rel="stylesheet" href="../../../../css/dialog.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogoo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="../../../../index.html">首页</a> </li>
+                
+                  <li> <a class="main-nav-link" href="../../../../archives">归档</a> </li>
+                
+                  <li> <a class="main-nav-link" href="../../../../categories">分类</a> </li>
+                
+                  <li> <a class="main-nav-link" href="../../../../tags">标签</a> </li>
+                
+                  <li> <a class="main-nav-link" href="../../../../about">关于</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '../../../../content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="../../../../js/insight.js"></script>
+
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Data-Structure-And-Algorithms" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Data Structure And Algorithms
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="" class="article-date">
+	  <time datetime="2022-07-19T05:03:46.000Z" itemprop="datePublished">2022-07-19</time>
+	</a>
+
+      
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1>单链表与双链表</h1>
+<blockquote>
+<p>静态链表实现</p>
+</blockquote>
+<h2 id="单链表">单链表</h2>
+<h3 id="核心实现">核心实现</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N = <span class="number">100010</span>;</span><br><span class="line"><span class="keyword">int</span> ne[N], e[N], head, idx;</span><br><span class="line"><span class="comment">// 初始化</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">    head=<span class="number">-1</span>; <span class="comment">// -1表示空节点</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 头插法</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addHead</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    e[idx]=x;</span><br><span class="line">    ne[idx]=head;</span><br><span class="line">    head=idx;  <span class="comment">// 注意！</span></span><br><span class="line">    idx++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 插入k后</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">    e[idx]=x;</span><br><span class="line">    ne[idx]=ne[k];</span><br><span class="line">    ne[k]=idx;</span><br><span class="line">    idx++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 删除k后节点</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">del</span><span class="params">(<span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">    ne[k]=ne[ne[k]];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="练习题型">练习题型</h3>
+<p><strong>826.单链表</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 删除第k个插入节点，则其下标idx=k-1</span></span><br><span class="line"><span class="comment">// 删除头节点特殊处理：head=ne[head];</span></span><br></pre></td></tr></table></figure>
+<h2 id="双链表">双链表</h2>
+<h3 id="练习题型-2">练习题型</h3>
+<p><strong>827.双链表</strong></p>
+<p>真的会谢，码力==0</p>
+<h1>单调栈</h1>
+<blockquote>
+<p>常见模型：找出每个数左边离它最近的比它大/小的数</p>
+</blockquote>
+<h1>单调队列</h1>
+<blockquote>
+<p>常见模型：找出滑动窗口中的最大/小值</p>
+</blockquote>
+<h1>KMP</h1>
+<h1>Trie树</h1>
+<blockquote>
+<p>高效存储/查找字符串集合</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> son[N][<span class="number">26</span>], cnt[N], idx; <span class="comment">//下标为0的点既空节点又根节点</span></span><br><span class="line"><span class="comment">// 插入</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">char</span> str[])</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> p=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;str[i];i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> u = str[i] - <span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">        <span class="keyword">if</span>(!son[p][u]) son[p][u]=++idx;</span><br><span class="line">        p = son[p][u];</span><br><span class="line">    &#125;</span><br><span class="line">    cnt[p]++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 查询</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">char</span> str[])</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> p=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;str[i];i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> u=str[i]-<span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">        <span class="keyword">if</span>(!son[p][u]) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> cnt[p];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1>并查集</h1>
+<blockquote>
+<p>（原生并查集）快速查找两点是否同一个集合；快速合并两个集合</p>
+</blockquote>
+<h2 id="核心实现-2">核心实现</h2>
+<ul>
+<li>找祖宗与路径压缩</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 查找x的祖先+路径压缩</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x!=p[x])p[x]=<span class="built_in">find</span>(p[x]);</span><br><span class="line">    <span class="keyword">return</span> p[x];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>合并集合</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p[<span class="built_in">find</span>(a)]=<span class="built_in">find</span>(b);</span><br></pre></td></tr></table></figure>
+<h2 id="变形题型">变形题型</h2>
+<h3 id="查找图的连通分量中节点的数目">查找图的连通分量中节点的数目</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 合并集合时加到根节点上,size[N]令根节点有含义即可</span></span><br><span class="line"><span class="keyword">if</span>(<span class="built_in">find</span>(a)==<span class="built_in">find</span>(b)) <span class="keyword">continue</span>;</span><br><span class="line">size[<span class="built_in">find</span>(b)]+=size[<span class="built_in">find</span>(a)];</span><br><span class="line">p[<span class="built_in">find</span>(a)]=<span class="built_in">find</span>(b);</span><br></pre></td></tr></table></figure>
+<h1>堆</h1>
+<blockquote>
+<p>插入数；求最小值与删除最小值；删除修改任意元素</p>
+</blockquote>
+<h2 id="核心实现-3">核心实现</h2>
+<ul>
+<li>初始建堆</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=n/<span class="number">2</span>;i;i--)&#123;</span><br><span class="line">    <span class="built_in">down</span>(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>复杂度说明(利用高中的数列求和知识)：</p>
+<p><img src="https://latex.codecogs.com/svg.latex?S=1*%5Cfrac%7Bn%7D%7B2%5E2%7D+2*%5Cfrac%7Bn%7D%7B2%5E3%7D+3*%5Cfrac%7Bn%7D%7B2%5E4%7D+..." alt><br>
+<img src="https://latex.codecogs.com/svg.latex?S=n*(1*%5Cfrac%7B1%7D%7B2%5E2%7D+2*%5Cfrac%7B1%7D%7B2%5E3%7D+3*%5Cfrac%7B1%7D%7B2%5E4%7D+...)" alt><br>
+<img src="https://latex.codecogs.com/svg.latex?2*S=n*(1*%5Cfrac%7B1%7D%7B2%7D+2*%5Cfrac%7B1%7D%7B2%5E2%7D+3*%5Cfrac%7B1%7D%7B2%5E3%7D+4*%5Cfrac%7B1%7D%7B2%5E4%7D+...)" alt><br>
+<img src="https://latex.codecogs.com/svg.latex?%5CRightarrow%20S=2*S-S=n*(%5Cfrac%7B1%7D%7B2%7D+%5Cfrac%7B1%7D%7B2%5E2%7D+%5Cfrac%7B1%7D%7B2%5E3%7D+%5Cfrac%7B1%7D%7B2%5E4%7D+...)%3Cn*1=n" alt></p>
+<ul>
+<li>down操作与up操作</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 区别：down需要和两个儿子比大小；up只需要与一个爹比大小</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">down</span><span class="params">(<span class="keyword">int</span> idx)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t=idx;</span><br><span class="line">    <span class="keyword">if</span>(<span class="number">2</span>*t&lt;=size&amp;&amp;h[<span class="number">2</span>*t]&lt;h[idx]) t=<span class="number">2</span>*idx;</span><br><span class="line">    <span class="keyword">if</span>(<span class="number">2</span>*t+<span class="number">1</span>&lt;=size&amp;&amp;h[<span class="number">2</span>*t+<span class="number">1</span>]&lt;h[idx]) t=<span class="number">2</span>*idx+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(t!=idx)&#123;</span><br><span class="line">        <span class="built_in">swap</span>(h[t], h[idx]);</span><br><span class="line">        <span class="built_in">down</span>(t);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">up</span><span class="params">(<span class="keyword">int</span> idx)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(idx/<span class="number">2</span> &amp;&amp; h[idx/<span class="number">2</span>]&gt;h[idx])&#123;</span><br><span class="line">        <span class="built_in">swap</span>(h[idx], h[idx/<span class="number">2</span>]);</span><br><span class="line">        idx/=<span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>堆排序：不断拿出头节点</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(m--)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,h[<span class="number">1</span>]);  <span class="comment">//堆中头节点不使用0</span></span><br><span class="line">    head[<span class="number">1</span>]=head[size--]; <span class="comment">//通过数组最后一个元素删除头节点</span></span><br><span class="line">    <span class="built_in">down</span>(<span class="number">1</span>); <span class="comment">//维持有序</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="进阶实现">进阶实现</h2>
+<p>维护数插入的次序；用途：Dijkstra算法</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 多维护两个数组，用于记录位置</span></span><br><span class="line"><span class="comment">// 用途：删除或修改第k个插入的元素</span></span><br><span class="line"><span class="keyword">int</span> hp[N], ph[N];</span><br><span class="line"><span class="comment">// 将swap函数替换为heap_swap函数</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">head_swap</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="built_in">swap</span>(ph[hp[a]], ph[hp[b]]);</span><br><span class="line">    <span class="built_in">swap</span>(hp[a], hp[b]);</span><br><span class="line">    <span class="built_in">swap</span>(h[a], h[b]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+
+<script src="../../../../js/vdonate.js"></script>
+
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: '打赏支持', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://pic3.zhimg.com/80/v2-ea5bb2685f8c6ad3392bfcb76a70e9d7_720w.jpg?source=1940ef5c',
+  alipayImage: 'https://pic3.zhimg.com/80/v2-7feeffaa075f9813a3c562abbd4b655c_720w.jpg?source=1940ef5c'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>本文作者:  </strong>bowlmeat</a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>本文链接:  </strong>
+          <a href="/2022/07/19/Data-Structure-And-Algorithms/" target="_blank" title="Data Structure And Algorithms">https://bowlmeat.github.io/2022/07/19/Data-Structure-And-Algorithms/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明:   </strong>
+            本博客所有文章除特别声明外，均采用 <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            许可协议。转载请注明出处
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="../Data-Structure-by-CSKaoYan/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          Data Structure by CSKaoYan
+        
+      </div>
+    </a>
+  
+  
+    <a href="../../09/ML/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">ML</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">单链表与双链表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%95%E9%93%BE%E8%A1%A8"><span class="nav-number">1.1.</span> <span class="nav-text">单链表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.1.1.</span> <span class="nav-text">核心实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98%E5%9E%8B"><span class="nav-number">1.1.2.</span> <span class="nav-text">练习题型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8C%E9%93%BE%E8%A1%A8"><span class="nav-number">1.2.</span> <span class="nav-text">双链表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0%E9%A2%98%E5%9E%8B-2"><span class="nav-number">1.2.1.</span> <span class="nav-text">练习题型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">单调栈</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">单调队列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">4.</span> <span class="nav-text">KMP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">5.</span> <span class="nav-text">Trie树</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">6.</span> <span class="nav-text">并查集</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E5%AE%9E%E7%8E%B0-2"><span class="nav-number">6.1.</span> <span class="nav-text">核心实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%98%E5%BD%A2%E9%A2%98%E5%9E%8B"><span class="nav-number">6.2.</span> <span class="nav-text">变形题型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE%E5%9B%BE%E7%9A%84%E8%BF%9E%E9%80%9A%E5%88%86%E9%87%8F%E4%B8%AD%E8%8A%82%E7%82%B9%E7%9A%84%E6%95%B0%E7%9B%AE"><span class="nav-number">6.2.1.</span> <span class="nav-text">查找图的连通分量中节点的数目</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">7.</span> <span class="nav-text">堆</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%B8%E5%BF%83%E5%AE%9E%E7%8E%B0-3"><span class="nav-number">7.1.</span> <span class="nav-text">核心实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E9%98%B6%E5%AE%9E%E7%8E%B0"><span class="nav-number">7.2.</span> <span class="nav-text">进阶实现</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2022 Bowlmeat&#39;s Blogs All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				访客数 : <span id="busuanzi_value_site_uv"></span> |  
+				访问量 : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="../../../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../../../archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="../../../../categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="../../../../tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="../../../../about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="../../../../fancybox/jquery.fancybox.css">
+
+  
+<script src="../../../../fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="../../../../js/scripts.js"></script>
+
+
+
+
+
+  
+<script src="../../../../js/dialog.js"></script>
+
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Bowlmeat&#39;s Blogs
+          </div>
+          <div class="panel-body">
+            Copyright © 2022 bowlmeat All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>
