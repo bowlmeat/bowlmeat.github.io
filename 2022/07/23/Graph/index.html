@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>数据结构-考研大纲 | Bowlmeat&#39;s Blogs</title>
+  <title>图论与搜索 | Bowlmeat&#39;s Blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="keywords" content="算法" />
@@ -11,20 +11,18 @@
   
   
   
-  <meta name="description" content="二叉树题目一、通过前序遍历与中序遍历确定一棵二叉树  这代码还有问题，目前输出的还是前序遍历，明天再看一下，先去洗个澡。 1234567891011121314151617181920212223242526272829303132&#x2F;&#x2F; 输出层次遍历结果 #include&lt;stdio.h&gt;void traverseTree(char pre[], char in[], int preL">
+  <meta name="description" content="DFS BFS 树与图的深度优先遍历 存储结构 图：邻接矩阵（用的少），邻接表 树的DFS 846.树的重心 (就目前我的水平来说整个代码都是重点–) 123456789101112131415161718192021222324252627282930313233343536373839int h[N], e[N], ne[N], idx;bool st[N];int ans;void add(">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据结构-考研大纲">
-<meta property="og:url" content="https://bowlmeat.github.io/2022/07/19/Data-Structure-by-CSKaoYan/index.html">
+<meta property="og:title" content="图论与搜索">
+<meta property="og:url" content="https://bowlmeat.github.io/2022/07/23/Graph/index.html">
 <meta property="og:site_name" content="Bowlmeat&#39;s Blogs">
-<meta property="og:description" content="二叉树题目一、通过前序遍历与中序遍历确定一棵二叉树  这代码还有问题，目前输出的还是前序遍历，明天再看一下，先去洗个澡。 1234567891011121314151617181920212223242526272829303132&#x2F;&#x2F; 输出层次遍历结果 #include&lt;stdio.h&gt;void traverseTree(char pre[], char in[], int preL">
+<meta property="og:description" content="DFS BFS 树与图的深度优先遍历 存储结构 图：邻接矩阵（用的少），邻接表 树的DFS 846.树的重心 (就目前我的水平来说整个代码都是重点–) 123456789101112131415161718192021222324252627282930313233343536373839int h[N], e[N], ne[N], idx;bool st[N];int ans;void add(">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://latex.codecogs.com/svg.latex?Constructing%20%5Cleft%5C%7B%20%5Cbegin%7Baligned%7D%20PreOrder&+InOrder%20%5C%5C%20PostOrder&+InOrder%20%5C%5C%20LevelOrder&+InOrder%20%5Cend%7Baligned%7D%20%5Cright.">
-<meta property="article:published_time" content="2022-07-19T13:21:13.000Z">
-<meta property="article:modified_time" content="2022-07-21T05:54:37.753Z">
+<meta property="article:published_time" content="2022-07-23T10:02:11.000Z">
+<meta property="article:modified_time" content="2022-07-23T12:57:53.024Z">
 <meta property="article:author" content="bowlmeat">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://latex.codecogs.com/svg.latex?Constructing%20%5Cleft%5C%7B%20%5Cbegin%7Baligned%7D%20PreOrder&+InOrder%20%5C%5C%20PostOrder&+InOrder%20%5C%5C%20LevelOrder&+InOrder%20%5Cend%7Baligned%7D%20%5Cright.">
   
     <link rel="alternate" href="/atom.xml" title="Bowlmeat&#39;s Blogs" type="application/atom+xml">
   
@@ -176,7 +174,7 @@
             
       <div id="content" class="outer">
         
-          <section id="main" style="float:none;"><article id="post-Data-Structure-by-CSKaoYan" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+          <section id="main" style="float:none;"><article id="post-Graph" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
   <div id="articleInner" class="article-inner">
     
     
@@ -184,7 +182,7 @@
         
   
     <h1 class="thumb" class="article-title" itemprop="name">
-      数据结构-考研大纲
+      图论与搜索
     </h1>
   
 
@@ -193,7 +191,7 @@
     <div class="article-meta">
       
 	<a href="" class="article-date">
-	  <time datetime="2022-07-19T13:21:13.000Z" itemprop="datePublished">2022-07-19</time>
+	  <time datetime="2022-07-23T10:02:11.000Z" itemprop="datePublished">2022-07-23</time>
 	</a>
 
       
@@ -209,15 +207,17 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h1><h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><strong>一、通过前序遍历与中序遍历确定一棵二叉树</strong></p>
-<p><img src="https://latex.codecogs.com/svg.latex?Constructing%20%5Cleft%5C%7B%20%5Cbegin%7Baligned%7D%20PreOrder&+InOrder%20%5C%5C%20PostOrder&+InOrder%20%5C%5C%20LevelOrder&+InOrder%20%5Cend%7Baligned%7D%20%5Cright."></p>
-<p>这代码还有问题，目前输出的还是前序遍历，明天再看一下，先去洗个澡。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 输出层次遍历结果 </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">traverseTree</span><span class="params">(<span class="keyword">char</span> pre[], <span class="keyword">char</span> in[], <span class="keyword">int</span> preLeft, <span class="keyword">int</span> preRight, <span class="keyword">int</span> inLeft, <span class="keyword">int</span> inRight)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(preLeft&gt;preRight||inLeft&gt;inRight) <span class="keyword">return</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">char</span> root = pre[preLeft];</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%c\n&quot;</span>, root);</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 中序遍历中查找根节点的下标 </span></span><br><span class="line">	<span class="keyword">int</span> index;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=inLeft;i&lt;=inRight;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(in[i]==root)&#123;</span><br><span class="line">			index=i;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 左子树 </span></span><br><span class="line">	<span class="built_in">traverseTree</span>(pre, in, preLeft+<span class="number">1</span>, preLeft+index-inLeft, inLeft, index<span class="number">-1</span>);</span><br><span class="line">	<span class="comment">// 右子树 </span></span><br><span class="line">	<span class="built_in">traverseTree</span>(pre, in, preRight-inRight+index+<span class="number">1</span>, preRight, index+<span class="number">1</span>, inRight);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">/*char pre[]=&#123;&#x27;A&#x27;, &#x27;D&#x27;, &#x27;B&#x27;, &#x27;C&#x27;, &#x27;E&#x27;&#125;;</span></span><br><span class="line"><span class="comment">	char in[]=&#123;&#x27;B&#x27;, &#x27;D&#x27;, &#x27;C&#x27;, &#x27;A&#x27;, &#x27;E&#x27;&#125;;	</span></span><br><span class="line"><span class="comment">	traverseTree(pre, in, 0, 4, 0, 4);*/</span></span><br><span class="line">	</span><br><span class="line">	<span class="keyword">char</span> pre[]=&#123;<span class="string">&#x27;D&#x27;</span>,<span class="string">&#x27;A&#x27;</span>,<span class="string">&#x27;E&#x27;</span>,<span class="string">&#x27;F&#x27;</span>,<span class="string">&#x27;B&#x27;</span>,<span class="string">&#x27;C&#x27;</span>,<span class="string">&#x27;H&#x27;</span>,<span class="string">&#x27;G&#x27;</span>,<span class="string">&#x27;I&#x27;</span>&#125;;</span><br><span class="line">	<span class="keyword">char</span> in[]=&#123;<span class="string">&#x27;E&#x27;</span>,<span class="string">&#x27;A&#x27;</span>,<span class="string">&#x27;F&#x27;</span>,<span class="string">&#x27;D&#x27;</span>,<span class="string">&#x27;H&#x27;</span>,<span class="string">&#x27;C&#x27;</span>,<span class="string">&#x27;B&#x27;</span>,<span class="string">&#x27;G&#x27;</span>,<span class="string">&#x27;I&#x27;</span>&#125;;</span><br><span class="line">	<span class="built_in">traverseTree</span>(pre, in, <span class="number">0</span>, <span class="number">8</span>, <span class="number">0</span>, <span class="number">8</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
+        <h1>DFS</h1>
+<h1>BFS</h1>
+<h1>树与图的深度优先遍历</h1>
+<h2 id="存储结构-2">存储结构</h2>
+<p>图：邻接矩阵（用的少），邻接表</p>
+<h2 id="树的DFS">树的DFS</h2>
+<p><strong>846.树的重心</strong><br>
+<font color="red"><strong>(就目前我的水平来说整个代码都是重点–)</strong></font></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> h[N], e[N], ne[N], idx;</span><br><span class="line"><span class="keyword">bool</span> st[N];</span><br><span class="line"><span class="keyword">int</span> ans;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    e[idx]=b, ne[idx]=h[a], h[a]=idx ++;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="comment">// 这里记得存个疑</span></span><br><span class="line"></span><br><span class="line">    st[x] = <span class="literal">true</span>; </span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">1</span>, res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=h[x]; i!=<span class="number">-1</span>; i=ne[i])&#123;</span><br><span class="line">        <span class="keyword">int</span> u = e[i];</span><br><span class="line">        <span class="keyword">if</span>(!st[u])&#123;</span><br><span class="line">            <span class="keyword">int</span> s = <span class="built_in">dfs</span>(u);</span><br><span class="line">            res = <span class="built_in">max</span>(res, s);</span><br><span class="line">            sum += s;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    res = <span class="built_in">max</span>(res, n-sum);</span><br><span class="line">    ans = <span class="built_in">min</span>(ans, res);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="built_in">memset</span>(h, <span class="number">-1</span>, <span class="keyword">sizeof</span> h);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> a, b;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;a, &amp;b);</span><br><span class="line">        <span class="built_in">add</span>(a, b), <span class="built_in">add</span>(b, a);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">dfs</span>(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="图的BFS">图的BFS</h2>
+<p><strong>847.图中点的层次</strong></p>
 
       
     </div>
@@ -246,7 +246,7 @@ var a = new Donate({
           </li>
           <li class="post-copyright-link">
           <strong>本文链接:  </strong>
-          <a href="/2022/07/19/Data-Structure-by-CSKaoYan/" target="_blank" title="数据结构-考研大纲">https://bowlmeat.github.io/2022/07/19/Data-Structure-by-CSKaoYan/</a>
+          <a href="/2022/07/23/Graph/" target="_blank" title="图论与搜索">https://bowlmeat.github.io/2022/07/23/Graph/</a>
           </li>
           <li class="post-copyright-license">
             <strong>版权声明:   </strong>
@@ -296,19 +296,10 @@ var a = new Donate({
     
 <nav id="article-nav">
   
-    <a href="../../21/Algorithms/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          常见常规算法
-        
-      </div>
-    </a>
   
-  
-    <a href="../Data-Structure-And-Algorithms/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="../../21/posts/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">数据结构</div>
+      <div class="article-nav-title">posts</div>
     </a>
   
 </nav>
@@ -322,7 +313,7 @@ var a = new Donate({
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
     
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="nav-number">1.</span> <span class="nav-text">二叉树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-number">1.1.</span> <span class="nav-text">题目</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">DFS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">2.</span> <span class="nav-text">BFS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link"><span class="nav-number">3.</span> <span class="nav-text">树与图的深度优先遍历</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E7%BB%93%E6%9E%84-2"><span class="nav-number">3.1.</span> <span class="nav-text">存储结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%91%E7%9A%84DFS"><span class="nav-number">3.2.</span> <span class="nav-text">树的DFS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E7%9A%84BFS"><span class="nav-number">3.3.</span> <span class="nav-text">图的BFS</span></a></li></ol></li></ol>
     
     </div>
   </aside>
