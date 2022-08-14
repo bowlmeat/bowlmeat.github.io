@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>search algorithm | Bowlmeat&#39;s Blogs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="课外" />
+  
+  
+  
+  
+  <meta name="description" content="搜索算法简述分类  扩展阅读：蒙特卡洛树搜索最通俗入门指南 - 知乎   回溯与DFS 递归树   此处所举例子：实现1~3全排列  最简单实现：三层循环+一个条件判断 高阶：回溯；vis[]数组   通用性模板： 12345678910void dfs()&amp;#123;    if()&amp;#123;&amp;#125;	&#x2F;&#x2F;递归终止条件    if()&amp;#123;&amp;#125;	&#x2F;&#x2F;剪枝优化条件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Search Algorithm">
+<meta property="og:url" content="https://bowlmeat.github.io/2022/03/05/Search-Algorithm/index.html">
+<meta property="og:site_name" content="Bowlmeat&#39;s Blogs">
+<meta property="og:description" content="搜索算法简述分类  扩展阅读：蒙特卡洛树搜索最通俗入门指南 - 知乎   回溯与DFS 递归树   此处所举例子：实现1~3全排列  最简单实现：三层循环+一个条件判断 高阶：回溯；vis[]数组   通用性模板： 12345678910void dfs()&amp;#123;    if()&amp;#123;&amp;#125;	&#x2F;&#x2F;递归终止条件    if()&amp;#123;&amp;#125;	&#x2F;&#x2F;剪枝优化条件">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/03/05/Ye7XDSvwBpo5rHW.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/08/WI7XOJBLHhEftZp.png">
+<meta property="og:image" content="https://s2.loli.net/2022/03/08/lQxCGvX2RLOoSbr.png">
+<meta property="article:published_time" content="2022-03-05T01:28:39.000Z">
+<meta property="article:modified_time" content="2022-08-14T06:56:18.210Z">
+<meta property="article:author" content="bowlmeat">
+<meta property="article:tag" content="课外">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/03/05/Ye7XDSvwBpo5rHW.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Bowlmeat&#39;s Blogs" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogoo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogoo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  
+<link rel="stylesheet" href="../../../../css/style.css">
+
+
+  
+<script src="../../../../js/jquery-3.1.1.min.js"></script>
+
+  
+<script src="../../../../js/bootstrap.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    
+<link rel="stylesheet" href="../../../../css/dialog.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogoo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="../../../../index.html">首页</a> </li>
+                
+                  <li> <a class="main-nav-link" href="../../../../archives">归档</a> </li>
+                
+                  <li> <a class="main-nav-link" href="../../../../categories">分类</a> </li>
+                
+                  <li> <a class="main-nav-link" href="../../../../tags">标签</a> </li>
+                
+                  <li> <a class="main-nav-link" href="../../../../about">关于</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '../../../../content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="../../../../js/insight.js"></script>
+
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-Search-Algorithm" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      Search Algorithm
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="" class="article-date">
+	  <time datetime="2022-03-05T01:28:39.000Z" itemprop="datePublished">2022-03-05</time>
+	</a>
+
+      
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="搜索算法简述"><a href="#搜索算法简述" class="headerlink" title="搜索算法简述"></a>搜索算法简述</h1><h2 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h2><p><img src="https://s2.loli.net/2022/03/05/Ye7XDSvwBpo5rHW.png" alt="搜索算法大纲.png"></p>
+<ul>
+<li>扩展阅读：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/53948964#:~:text=%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">蒙特卡洛树搜索最通俗入门指南 - 知乎 </a></li>
+</ul>
+<h3 id="回溯与DFS"><a href="#回溯与DFS" class="headerlink" title="回溯与DFS"></a>回溯与DFS</h3><blockquote>
+<p>递归树</p>
+</blockquote>
+<ul>
+<li><p>此处所举例子：实现1~3全排列</p>
+<ul>
+<li>最简单实现：三层循环+一个条件判断</li>
+<li>高阶：回溯；vis[]数组</li>
+</ul>
+</li>
+<li><p>通用性模板：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>()&#123;&#125;	<span class="comment">//递归终止条件</span></span><br><span class="line">    <span class="keyword">if</span>()&#123;&#125;	<span class="comment">//剪枝优化条件</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>()&#123;	<span class="comment">//深搜</span></span><br><span class="line">        <span class="comment">//状态标记</span></span><br><span class="line">		<span class="built_in">dfs</span>()</span><br><span class="line">        <span class="comment">//状态恢复：这里进行回溯，需要设置状态标记</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="A"><a href="#A" class="headerlink" title="A*"></a>A*</h3><h4 id="基础款介绍"><a href="#基础款介绍" class="headerlink" title="基础款介绍"></a>基础款介绍</h4><h5 id="伪码"><a href="#伪码" class="headerlink" title="伪码"></a>伪码</h5><ul>
+<li>启发式算法：<ul>
+<li>估值函数：<code>f(n)=g(n)+h(n)</code>，注意对启发部是有限制条件</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(OPEN!=<span class="literal">NULL</span>)</span><br><span class="line">&#123;</span><br><span class="line">    从OPEN表中取<span class="built_in">f</span>(n)最小的节点n;</span><br><span class="line">    <span class="keyword">if</span>(n节点==目标节点)</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">for</span>(当前节点n的每个子节点X)</span><br><span class="line">    &#123;</span><br><span class="line">        计算<span class="built_in">f</span>(X);</span><br><span class="line">        <span class="keyword">if</span>(XinOPEN)</span><br><span class="line">            <span class="keyword">if</span>(新的<span class="built_in">f</span>(X)&lt;OPEN中的<span class="built_in">f</span>(X))</span><br><span class="line">            &#123;</span><br><span class="line">                把n设置为X的父亲;</span><br><span class="line">                更新OPEN表中的<span class="built_in">f</span>(n);</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">if</span>(XinCLOSE)</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">if</span>(Xnotinboth)</span><br><span class="line">        &#123;</span><br><span class="line">            把n设置为X的父亲;</span><br><span class="line">            求<span class="built_in">f</span>(X);</span><br><span class="line">            并将X插入OPEN表中;<span class="comment">//还没有排序</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="comment">//endfor</span></span><br><span class="line">    将n节点插入CLOSE表中;</span><br><span class="line">    按照<span class="built_in">f</span>(n)将OPEN表中的节点排序;<span class="comment">//实际上是比较OPEN表内节点f的大小，从最小路径的节点向下进行。</span></span><br><span class="line">&#125;<span class="comment">//endwhile(OPEN!=NULL)</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h5><ul>
+<li><p>open集与close集：</p>
+</li>
+<li><p>操作</p>
+<p>$$open=\left{<br>\begin{matrix}<br>delete \<br>insert<br>\end{matrix}<br>\right.<br>$$</p>
+</li>
+<li><p>会退化为Dijkstra：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/denghecsdn/article/details/78778769">A*详解 译文</a></li>
+<li><a target="_blank" rel="noopener" href="https://bbs.csdn.net/topics/70416815">A*能否最优解</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="增强款介绍"><a href="#增强款介绍" class="headerlink" title="增强款介绍"></a>增强款介绍</h4><h5 id="1-LPA"><a href="#1-LPA" class="headerlink" title="1.LPA"></a>1.LPA</h5><h5 id="2-D"><a href="#2-D" class="headerlink" title="2.D*"></a>2.D*</h5><ul>
+<li>相关阅读<a target="_blank" rel="noopener" href="https://www.wikiwand.com/en/D*">D* - Wikiwand</a></li>
+</ul>
+<p>扩展阅读：<a target="_blank" rel="noopener" href="http://https_www.cnblogs.com/?url=https://www.cnblogs.com/volva/p/73495d5b6e90d95fa37c764ff1a47e2d.html">D*</a></p>
+<h2 id="优化策略"><a href="#优化策略" class="headerlink" title="优化策略"></a>优化策略</h2><h3 id="剪枝：最优性剪枝"><a href="#剪枝：最优性剪枝" class="headerlink" title="剪枝：最优性剪枝"></a>剪枝：最优性剪枝</h3><blockquote>
+<p>实际即为上下界限制的剪枝</p>
+</blockquote>
+<ul>
+<li>剪枝策略本身包括：1. 可行性剪枝$\rightarrow$能否得到可行的解    2.最优性剪枝$\rightarrow$当前结点无法产生更优解时可提前回溯</li>
+</ul>
+<p>​                                         </p>
+<h1 id="算法知识扩展"><a href="#算法知识扩展" class="headerlink" title="算法知识扩展"></a>算法知识扩展</h1><h3 id="启发式算法"><a href="#启发式算法" class="headerlink" title="启发式算法"></a>启发式算法</h3><blockquote>
+<p>最优化算法与启发式算法</p>
+</blockquote>
+<p><img src="https://s2.loli.net/2022/03/08/WI7XOJBLHhEftZp.png" alt="image.png"></p>
+<ul>
+<li><em>扩展阅读：</em><a target="_blank" rel="noopener" href="https://www.cnblogs.com/maybe2030/p/4751804.html">常见的几种最优化方法</a></li>
+</ul>
+<h4 id="算法收敛性与收敛速度"><a href="#算法收敛性与收敛速度" class="headerlink" title="算法收敛性与收敛速度"></a>算法收敛性与收敛速度</h4><ul>
+<li><em>扩展阅读：</em><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_31239371/article/details/109894189">浅谈算法收敛性与收敛速度</a></li>
+</ul>
+<h3 id="在线算法与离线算法"><a href="#在线算法与离线算法" class="headerlink" title="在线算法与离线算法"></a>在线算法与离线算法</h3><ul>
+<li><p>在线算法</p>
+<p>可能不是最优解</p>
+</li>
+</ul>
+<h2 id="Dijkstra相关证明"><a href="#Dijkstra相关证明" class="headerlink" title="Dijkstra相关证明"></a>Dijkstra相关证明</h2><ul>
+<li>数学归纳+极限思想</li>
+</ul>
+<p><img src="https://s2.loli.net/2022/03/08/lQxCGvX2RLOoSbr.png" alt="image.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+
+<script src="../../../../js/vdonate.js"></script>
+
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: '打赏支持', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://pic3.zhimg.com/80/v2-ea5bb2685f8c6ad3392bfcb76a70e9d7_720w.jpg?source=1940ef5c',
+  alipayImage: 'https://pic3.zhimg.com/80/v2-7feeffaa075f9813a3c562abbd4b655c_720w.jpg?source=1940ef5c'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>本文作者:  </strong>bowlmeat</a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>本文链接:  </strong>
+          <a href="/2022/03/05/Search-Algorithm/" target="_blank" title="Search Algorithm">https://bowlmeat.github.io/2022/03/05/Search-Algorithm/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明:   </strong>
+            本博客所有文章除特别声明外，均采用 <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            许可协议。转载请注明出处
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/%E8%AF%BE%E5%A4%96/" rel="tag">课外</a></li></ul>
+
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="../../10/5G/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          5G
+        
+      </div>
+    </a>
+  
+  
+    <a href="../../../../2021/10/26/linux-timer/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Linux-Timer</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95%E7%AE%80%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">搜索算法简述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E7%B1%BB"><span class="nav-number">1.1.</span> <span class="nav-text">分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E6%BA%AF%E4%B8%8EDFS"><span class="nav-number">1.1.1.</span> <span class="nav-text">回溯与DFS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#A"><span class="nav-number">1.1.2.</span> <span class="nav-text">A*</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E6%AC%BE%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">基础款介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BC%AA%E7%A0%81"><span class="nav-number">1.1.2.1.1.</span> <span class="nav-text">伪码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.1.2.1.2.</span> <span class="nav-text">设计</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A2%9E%E5%BC%BA%E6%AC%BE%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">增强款介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-LPA"><span class="nav-number">1.1.2.2.1.</span> <span class="nav-text">1.LPA</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-D"><span class="nav-number">1.1.2.2.2.</span> <span class="nav-text">2.D*</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%98%E5%8C%96%E7%AD%96%E7%95%A5"><span class="nav-number">1.2.</span> <span class="nav-text">优化策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%AA%E6%9E%9D%EF%BC%9A%E6%9C%80%E4%BC%98%E6%80%A7%E5%89%AA%E6%9E%9D"><span class="nav-number">1.2.1.</span> <span class="nav-text">剪枝：最优性剪枝</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E7%9F%A5%E8%AF%86%E6%89%A9%E5%B1%95"><span class="nav-number">2.</span> <span class="nav-text">算法知识扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8F%91%E5%BC%8F%E7%AE%97%E6%B3%95"><span class="nav-number">2.0.1.</span> <span class="nav-text">启发式算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%94%B6%E6%95%9B%E6%80%A7%E4%B8%8E%E6%94%B6%E6%95%9B%E9%80%9F%E5%BA%A6"><span class="nav-number">2.0.1.1.</span> <span class="nav-text">算法收敛性与收敛速度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E7%BA%BF%E7%AE%97%E6%B3%95%E4%B8%8E%E7%A6%BB%E7%BA%BF%E7%AE%97%E6%B3%95"><span class="nav-number">2.0.2.</span> <span class="nav-text">在线算法与离线算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dijkstra%E7%9B%B8%E5%85%B3%E8%AF%81%E6%98%8E"><span class="nav-number">2.1.</span> <span class="nav-text">Dijkstra相关证明</span></a></li></ol></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2022 Bowlmeat&#39;s Blogs All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				访客数 : <span id="busuanzi_value_site_uv"></span> |  
+				访问量 : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="../../../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../../../archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="../../../../categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="../../../../tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="../../../../about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="../../../../fancybox/jquery.fancybox.css">
+
+  
+<script src="../../../../fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="../../../../js/scripts.js"></script>
+
+
+
+
+
+  
+<script src="../../../../js/dialog.js"></script>
+
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Bowlmeat&#39;s Blogs
+          </div>
+          <div class="panel-body">
+            Copyright © 2022 bowlmeat All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>

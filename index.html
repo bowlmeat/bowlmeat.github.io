@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Bowlmeat&#39;s Blogs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
+  <meta name="description" content="Actions speak louder than words">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bowlmeat&#39;s Blogs">
+<meta property="og:url" content="https://bowlmeat.github.io/index.html">
+<meta property="og:site_name" content="Bowlmeat&#39;s Blogs">
+<meta property="og:description" content="Actions speak louder than words">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="bowlmeat">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Bowlmeat&#39;s Blogs" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogoo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogoo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  
+<link rel="stylesheet" href="css/style.css">
+
+
+  
+<script src="js/jquery-3.1.1.min.js"></script>
+
+  
+<script src="js/bootstrap.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    <link rel="stylesheet" href="/css/home.css" >
+  
+
+  
+
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+  <body>
+
+
+  
+    <header id="header">
+
+	<!-- 背景图模式 -->
+	
+
+    
+      <div id="intrologo" class="intro-logo" style="background-position:center; background-repeat:no-repeat; background-image: url(); background-size: auto 100%;">
+
+      <!-- Support rolling -->  
+        
+        <section class="awSlider">
+          <div class="carousel slide carousel-fade " data-ride="carousel">
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+               
+                  
+                    <div class="item active">
+                  
+                    <img id="carousel-img0" src="/css/images/home-bgg.jpg">
+                  </div>
+
+                  <!-- 自适应大图 -->
+                  <script>
+                      var img0 = new Image();
+                      var imageTag0 = document.getElementById("carousel-img0");
+                      img0.src = imageTag0.src;
+                      img0.onload=function(){
+                        if (img0.width / img0.height <= document.body.clientWidth / document.body.clientHeight) {
+                          imageTag0.style.width = document.body.clientWidth + "px";
+                        } else {
+                          imageTag0.style.height = document.body.clientHeight + "px";
+                          imageTag0.style.marginLeft = -(document.body.clientHeight * img0.width / img0.height - document.body.clientWidth) / 2 + "px";
+                        }
+                      };
+                  </script>
+                
+                  
+                    <div class="item">
+                  
+                    <img id="carousel-img1" src="/css/images/samplee.jpg">
+                  </div>
+
+                  <!-- 自适应大图 -->
+                  <script>
+                      var img1 = new Image();
+                      var imageTag1 = document.getElementById("carousel-img1");
+                      img1.src = imageTag1.src;
+                      img1.onload=function(){
+                        if (img1.width / img1.height <= document.body.clientWidth / document.body.clientHeight) {
+                          imageTag1.style.width = document.body.clientWidth + "px";
+                        } else {
+                          imageTag1.style.height = document.body.clientHeight + "px";
+                          imageTag1.style.marginLeft = -(document.body.clientHeight * img1.width / img1.height - document.body.clientWidth) / 2 + "px";
+                        }
+                      };
+                  </script>
+                
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href=".carousel" role="button" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+              <span class="sr-only">Geri</span>
+            </a>
+            <a class="right carousel-control" href=".carousel" role="button" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+              <span class="sr-only">İleri</span>
+            </a>
+          </div>
+        </section>
+        <script>
+          $('section.awSlider .carousel').carousel({
+              pause: '',
+              interval: 5000
+          });
+          var startImage = $('section.awSlider .item.active > img').attr('src');
+          $('section.awSlider .carousel').on('slid.bs.carousel', function () {
+              var bscn = $(this).find('.item.active > img').attr('src');
+              $('section.awSlider > img').attr('src', bscn);
+          });
+        </script>
+      
+
+    
+ 
+
+
+    <canvas width="100%" height="100%"></canvas>
+    <script>
+      var c = document.getElementsByTagName('canvas')[0],
+          x = c.getContext('2d'),
+          w = window.innerWidth,
+          h = window.innerHeight,
+          pr = window.devicePixelRatio || 1,
+          f = 90,
+          q,
+          m = Math,
+          r = 0,
+          u = m.PI*2,
+          v = m.cos,
+          z = m.random
+      c.width = w*pr
+      c.height = h*pr
+      x.scale(pr, pr)
+      x.globalAlpha = 0.6
+
+      <!-- 折线Polyline背景 -->
+      
+    </script>
+    
+
+    
+      <div id="homelogo" class="homelogo" style="background: rgba(255,255,255,1);"> 
+    
+
+        
+          <div class="homelogoback"  style="border: 1px solid #404040;" >
+            <h1><a href="#content" id="logo">Bowlmeat&#39;s Blogs</a></h1>
+            <h3>Actions speak louder than words</h3>
+            <h5>bowlmeat</h5>
+            <!-- <p><a href="https://github.com/iTimeTraveler" target="_blank">Github</a></p> -->
+          </div>
+        
+    
+    </div>
+  </div>
+
+  <!-- 自适应主页背景大图 -->
+  
+
+ <!-- home_logo_image居中 -->
+ 
+    <script>
+        var homelogodiv = document.getElementById("homelogo");
+        if (document.all.homelogo.offsetWidth > document.body.clientWidth) {
+          homelogodiv.style.width = document.body.clientWidth + "px";
+          homelogodiv.style.marginLeft = document.body.clientWidth * -0.5 + "px";
+        } else {
+          homelogodiv.style.width = homelogodiv.clientWidth  + "px";
+          homelogodiv.style.marginLeft = (homelogodiv.clientWidth)  * -0.5 + "px";
+        }
+    </script>
+  
+
+  <div class="intro-navigate">
+      <p class="navigater-list">
+        
+          <a id="beautifont" class="main-nav-link" href="index.html">首页</a>
+        
+          <a id="beautifont" class="main-nav-link" href="archives">归档</a>
+        
+          <a id="beautifont" class="main-nav-link" href="categories">分类</a>
+        
+          <a id="beautifont" class="main-nav-link" href="tags">标签</a>
+        
+          <a id="beautifont" class="main-nav-link" href="about">关于</a>
+        
+      </p>
+  </div>
+
+</header>
+  
+  <div id="container">
+    <div id="wrap">
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;">
+  
+    <article id="post-八股"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="2022/08/01/%E5%85%AB%E8%82%A1/">八股</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="2022/08/01/%E5%85%AB%E8%82%A1/" class="article-date">
+	  <time datetime="2022-08-01T01:39:31.000Z" itemprop="datePublished">2022-08-01</time>
+	</a>
+
+      
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          计算机网络CSMA/CD与CSMA/CA协议区别【答】
+
+【知乎】802.11协议精读3：CSMA/CD与CSMA/CA
+【CSDN】CSMA/CD与CSMA/CA的区别
+
+
+        </p>
+        <p class="article-more-link">
+          <a href="2022/08/01/%E5%85%AB%E8%82%A1/#more">阅读全文</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-basic-algorithms"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="2022/07/29/basic-algorithms/">Basic Algorithms</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="2022/07/29/basic-algorithms/" class="article-date">
+	  <time datetime="2022-07-29T03:05:29.000Z" itemprop="datePublished">2022-07-29</time>
+	</a>
+
+      
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          排序
+快速排序
+
+分治，确定分界点-调整区间-递归左右，不稳定
+很多边界问题
+
+x=q[l]; -&gt; quicksort(q, l, j); quicksort(q, j+1, r);
+x=q[r]或者x=q[(l+r+1)/2]; -&gt; quicksort(q, l, i-1); quicksort(q, i, r);
+避免一直取到左边界或者右边界
+
+
+调整区间的简单思想：额外开两个数组，左边放一个右边放一个
+
+12345678910111213141516171819202...
+        </p>
+        <p class="article-more-link">
+          <a href="2022/07/29/basic-algorithms/#more">阅读全文</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-Graph"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="2022/07/23/Graph/">Graph</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="2022/07/23/Graph/" class="article-date">
+	  <time datetime="2022-07-23T10:02:11.000Z" itemprop="datePublished">2022-07-23</time>
+	</a>
+
+      
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          DFS
+842.排列数字
+1234567891011121314151617void dfs(int u)&#123;    if(u &gt; n)&#123;        for(int i=1; i&lt;=n; i++)            printf(&quot;%d &quot;, path[i]);        printf(&quot;\n&quot;);        return;    &#125;    for(int i=1; i&lt;=n; i++)&...
+        </p>
+        <p class="article-more-link">
+          <a href="2022/07/23/Graph/#more">阅读全文</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-posts"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="2022/07/21/posts/">Posts</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="2022/07/21/posts/" class="article-date">
+	  <time datetime="2022-07-21T12:50:32.000Z" itemprop="datePublished">2022-07-21</time>
+	</a>
+
+      
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          经验贴1.末9预推免
+2.比较详细描述了考核内容
+3.(武大,中山,哈深)比较详细
+南大相关：https://blog.csdn.net/qq_41101762/article/details/108790594
+https://blog.csdn.net/qq_41101762/article/details/108790594
+https://zhuanlan.zhihu.com/p/415726099
+https://grawww.nju.edu.cn/33/91/c910a5374...
+        </p>
+        <p class="article-more-link">
+          <a href="2022/07/21/posts/#more">阅读全文</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-Algorithms"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="2022/07/21/Algorithms/">常见入门算法</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="2022/07/21/Algorithms/" class="article-date">
+	  <time datetime="2022-07-21T09:44:58.000Z" itemprop="datePublished">2022-07-21</time>
+	</a>
+
+      
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          汉诺塔问题
+汉诺塔问题中，3个圆盘至少需要移动7次，移动n个圆盘至少需要操作次
+
+分治实现12345678910111213141516171819void hanoi(int num, int sou, int tar, int aux)&#123;    static int i=1;    if(num == 1)&#123;        printf(&quot;第%d次：从%c移动至%c\n&quot;, i, sou, tar);        i++;    &#125; ...
+        </p>
+        <p class="article-more-link">
+          <a href="2022/07/21/Algorithms/#more">阅读全文</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-Data-Structure-by-CSKaoYan"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="2022/07/19/Data-Structure-by-CSKaoYan/">Data Structure by CSKaoYan</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="2022/07/19/Data-Structure-by-CSKaoYan/" class="article-date">
+	  <time datetime="2022-07-19T13:21:13.000Z" itemprop="datePublished">2022-07-19</time>
+	</a>
+
+      
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          树二叉树题目
+一、通过前序遍历与中序遍历确定一棵二叉树
+
+这代码还有问题，目前输出的还是前序遍历，明天再看一下，先去洗个澡。
+1234567891011121314151617181920212223242526272829303132// 输出层次遍历结果 #include&lt;stdio.h&gt;void traverseTree(char pre[], char in[], int preLeft, int preRight, int inLeft, int inRight)&#...
+        </p>
+        <p class="article-more-link">
+          <a href="2022/07/19/Data-Structure-by-CSKaoYan/#more">阅读全文</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-Data-Structure-And-Algorithms"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="2022/07/19/Data-Structure-And-Algorithms/">Data Structure And Algorithms</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="2022/07/19/Data-Structure-And-Algorithms/" class="article-date">
+	  <time datetime="2022-07-19T05:03:46.000Z" itemprop="datePublished">2022-07-19</time>
+	</a>
+
+      
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          
+单链表与双链表
+
+静态链表实现
+
+单链表
+核心实现
+123456789101112131415161718192021222324const int N = 100010;int ne[N], e[N], head, idx;// 初始化void init()&#123;    head=-1; // -1表示空节点&#125;// 头插法void addHead(int x)&#123;    e[idx]=x;    ne[idx]=head;    head=idx;  // 注意...
+        </p>
+        <p class="article-more-link">
+          <a href="2022/07/19/Data-Structure-And-Algorithms/#more">阅读全文</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-Some-Hot-Topics"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="2022/05/13/Some-Hot-Topics/">Some Hot Topics</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="2022/05/13/Some-Hot-Topics/" class="article-date">
+	  <time datetime="2022-05-13T03:18:21.000Z" itemprop="datePublished">2022-05-13</time>
+	</a>
+
+      
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          Metaverse
+
+
+information and communications technology
+Extened Reality
+
+
+
+        </p>
+        <p class="article-more-link">
+          <a href="2022/05/13/Some-Hot-Topics/#more">阅读全文</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-设计一台简单计算机"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="2022/03/25/%E8%AE%BE%E8%AE%A1%E4%B8%80%E5%8F%B0%E7%AE%80%E5%8D%95%E8%AE%A1%E7%AE%97%E6%9C%BA/">Computer Architecture</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="2022/03/25/%E8%AE%BE%E8%AE%A1%E4%B8%80%E5%8F%B0%E7%AE%80%E5%8D%95%E8%AE%A1%E7%AE%97%E6%9C%BA/" class="article-date">
+	  <time datetime="2022-03-25T04:07:52.000Z" itemprop="datePublished">2022-03-25</time>
+	</a>
+
+      
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          设计一台简单的计算机逻辑运算与
+以低电平、高电平，电阻、扳开关为例
+三极管 
+高低电平，真值表
+与(AND) 或(OR) 异或(exclusive or)
+
+
+
+
+
+算术运算加法
+AND高位与XOR低位实现加法运算真值表
+多位运算
+A_i, B_i, C_(i-1)—S_i, C_i
+多个单元块组成运算器
+
+
+
+存储功能只读存储器
+三极管
+接地成为低电平
+
+
+
+可读可写存储器
+电容
+
+
+运算器与控制器-CPU, 存储器-M
+CPU, M, 主机
+
+层次结构主存M, MAR, MDR
+MAR...
+        </p>
+        <p class="article-more-link">
+          <a href="2022/03/25/%E8%AE%BE%E8%AE%A1%E4%B8%80%E5%8F%B0%E7%AE%80%E5%8D%95%E8%AE%A1%E7%AE%97%E6%9C%BA/#more">阅读全文</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
+    <article id="post-RGCN"  class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" itemprop="name">
+      <a class="article-title" href="2022/03/18/RGCN/">GNN</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="2022/03/18/RGCN/" class="article-date">
+	  <time datetime="2022-03-18T07:03:22.000Z" itemprop="datePublished">2022-03-18</time>
+	</a>
+
+      
+      
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p class="article-excerpt-content">
+          RGCNModeling Relational Data with Graph Convolutional Networks
+好家伙我这是对RGCN从根源的了解错误了属于是
+这居然本身是用于关系型数据的
+
+而网络是不规整的关系型数据，所以其不存在平移不变形（每个节点的周围邻居数不固定），这就使得传统的 CNN 方法无法直接应用于网络中。
+
+key wordsknowledge base
+GCN平移不变性与局部连接性
+deepWalk与node2vecnode2vec123graph LR ...
+        </p>
+        <p class="article-more-link">
+          <a href="2022/03/18/RGCN/#more">阅读全文</a>
+        </p>
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      
+      
+
+    </footer>
+  </div>
+  
+</article>
+
+<!-- Table of Contents -->
+
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="page/2/">2</a><a class="extend next" rel="next" href="page/2/">下一页 &amp;raquo;</a>
+  </nav>
+
+</section>
+        
+      </div>
+      
+        <div align="center" style="margin-top: 30px;"><hr class="hr" style="margin:0px; height:3px;"></div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2022 Bowlmeat&#39;s Blogs All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				访客数 : <span id="busuanzi_value_site_uv"></span> |  
+				访问量 : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="fancybox/jquery.fancybox.css">
+
+  
+<script src="fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="js/scripts.js"></script>
+
+
+
+  
+<script src="js/home.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Bowlmeat&#39;s Blogs
+          </div>
+          <div class="panel-body">
+            Copyright © 2022 bowlmeat All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+</body>
+</html>

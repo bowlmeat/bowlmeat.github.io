@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>5g | Bowlmeat&#39;s Blogs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <meta name="keywords" content="课外" />
+  
+  
+  
+  
+  <meta name="description" content="5G  eMBB (Enhanced Mobile Broadband) uRLLC (Ultra-Reliable Low Latency Communication) mMTC (massive Machine Type Communication)   一、频率与调制 低频率，范围广 1、频段越低越好；2、带宽越大越好 QAM调制  二、香农的诅咒  毫米波：目前还处于概念状态，上下游产业链">
+<meta property="og:type" content="article">
+<meta property="og:title" content="5G">
+<meta property="og:url" content="https://bowlmeat.github.io/2022/03/10/5G/index.html">
+<meta property="og:site_name" content="Bowlmeat&#39;s Blogs">
+<meta property="og:description" content="5G  eMBB (Enhanced Mobile Broadband) uRLLC (Ultra-Reliable Low Latency Communication) mMTC (massive Machine Type Communication)   一、频率与调制 低频率，范围广 1、频段越低越好；2、带宽越大越好 QAM调制  二、香农的诅咒  毫米波：目前还处于概念状态，上下游产业链">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://s2.loli.net/2022/07/11/KxwT2UQdHeFbItr.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/10/4f3nRvacTpmJeiE.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/11/w3mJ16IQkZKxiVf.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/11/Gln1tBIW9LCkyFd.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/11/evBGlfyLPzItT7M.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/10/VRxUyYS8Ebn1szW.png">
+<meta property="og:image" content="https://s2.loli.net/2022/07/10/8DWLKXR2tprIilE.png">
+<meta property="article:published_time" content="2022-03-10T02:40:02.000Z">
+<meta property="article:modified_time" content="2022-08-14T06:59:11.993Z">
+<meta property="article:author" content="bowlmeat">
+<meta property="article:tag" content="课外">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://s2.loli.net/2022/07/11/KxwT2UQdHeFbItr.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Bowlmeat&#39;s Blogs" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogoo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogoo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("/css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("/css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("/css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  
+<link rel="stylesheet" href="../../../../css/style.css">
+
+
+  
+<script src="../../../../js/jquery-3.1.1.min.js"></script>
+
+  
+<script src="../../../../js/bootstrap.js"></script>
+
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css" >
+
+  
+    
+<link rel="stylesheet" href="../../../../css/dialog.css">
+
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css" >
+  
+
+  
+  
+  
+    <link rel="stylesheet" href="/css/vdonate.css" >
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogoo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="../../../../index.html">首页</a> </li>
+                
+                  <li> <a class="main-nav-link" href="../../../../archives">归档</a> </li>
+                
+                  <li> <a class="main-nav-link" href="../../../../categories">分类</a> </li>
+                
+                  <li> <a class="main-nav-link" href="../../../../tags">标签</a> </li>
+                
+                  <li> <a class="main-nav-link" href="../../../../about">关于</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(无标题)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '../../../../content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="../../../../js/insight.js"></script>
+
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-5G" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      5G
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="" class="article-date">
+	  <time datetime="2022-03-10T02:40:02.000Z" itemprop="datePublished">2022-03-10</time>
+	</a>
+
+      
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		阅读量<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="5G"><a href="#5G" class="headerlink" title="5G"></a>5G</h1><blockquote>
+<ul>
+<li>eMBB (Enhanced Mobile Broadband)</li>
+<li>uRLLC (Ultra-Reliable Low Latency Communication)</li>
+<li>mMTC (massive Machine Type Communication)</li>
+</ul>
+</blockquote>
+<h2 id="一、频率与调制"><a href="#一、频率与调制" class="headerlink" title="一、频率与调制"></a>一、频率与调制</h2><ul>
+<li>低频率，范围广</li>
+<li>1、频段越低越好；2、带宽越大越好</li>
+<li>QAM调制</li>
+</ul>
+<h2 id="二、香农的诅咒"><a href="#二、香农的诅咒" class="headerlink" title="二、香农的诅咒"></a>二、香农的诅咒</h2><p><img src="https://s2.loli.net/2022/07/11/KxwT2UQdHeFbItr.png" alt="香农公式.png"></p>
+<ul>
+<li>毫米波：目前还处于概念状态，上下游产业链极其滞后，业界对于毫米波的应用基本都聚焦于家庭基站</li>
+</ul>
+<h2 id="三、信道编码"><a href="#三、信道编码" class="headerlink" title="三、信道编码"></a>三、信道编码</h2><h2 id="四、Massive-MIMO"><a href="#四、Massive-MIMO" class="headerlink" title="四、Massive MIMO"></a>四、Massive MIMO</h2><ul>
+<li>多流波束赋形</li>
+</ul>
+<h2 id="五、SA-NSA"><a href="#五、SA-NSA" class="headerlink" title="五、SA/NSA"></a>五、SA/NSA</h2><blockquote>
+<p>独立组网Standalone与非独立组网Non-Standalone</p>
+</blockquote>
+<p><img src="https://s2.loli.net/2022/07/10/4f3nRvacTpmJeiE.png" alt="NSA与SA.png"></p>
+<ul>
+<li>NSA：operation3/3a/3x 锚点</li>
+</ul>
+<h3 id="（一）NSA下手机如何工作"><a href="#（一）NSA下手机如何工作" class="headerlink" title="（一）NSA下手机如何工作"></a><strong>（一）NSA下手机如何工作</strong></h3><ol>
+<li>小区<ul>
+<li>小区才是为手机用户服务的基本单元</li>
+<li>主瓣、上旁瓣、后瓣、下部零陷</li>
+</ul>
+</li>
+<li>RSRP-参考信号接收功率 </li>
+<li>切换<ul>
+<li>WiFi与移动通信技术</li>
+</ul>
+</li>
+<li>实例<ul>
+<li>锚点小区（定向切换）– 5G小区覆盖范围 – 辅小区</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://s2.loli.net/2022/07/11/w3mJ16IQkZKxiVf.png" alt="operation3x.png"></p>
+<h3 id="（二）NSA下手机如何移动"><a href="#（二）NSA下手机如何移动" class="headerlink" title="（二）NSA下手机如何移动"></a><strong>（二）NSA下手机如何移动</strong></h3><p><img src="https://s2.loli.net/2022/07/11/Gln1tBIW9LCkyFd.png" alt="切换.png"></p>
+<ol>
+<li>切换的几种事件<ul>
+<li>测量报告 Measure Report,MR</li>
+<li>切换事件：A3–邻接小区偏移后优于服务小区</li>
+</ul>
+</li>
+<li>实例<ul>
+<li>辅站：添加、删除、更换</li>
+<li>主站：锚点切换</li>
+</ul>
+</li>
+</ol>
+<h3 id="（三）NSA下手机信号如何显示"><a href="#（三）NSA下手机信号如何显示" class="headerlink" title="（三）NSA下手机信号如何显示"></a><strong>（三）NSA下手机信号如何显示</strong></h3><ol>
+<li>Config.D：只要手机占用上4G锚点站，不管做不做业务、5G基站激活没激活。</li>
+<li>Config.B与C：手机占用上了4G锚点站，而且锚点站还探测到了5G信号的存在。B与C的区别：手机是不是已经做业务了（空闲态/连接态）</li>
+<li>Config.A：用户手机在做业务且5G基站达到激活门限激活，真正使用5G上网的情况。</li>
+</ol>
+<h2 id="六、移动通信中的语音传播"><a href="#六、移动通信中的语音传播" class="headerlink" title="六、移动通信中的语音传播"></a>六、移动通信中的语音传播</h2><h3 id="（一）模数转化"><a href="#（一）模数转化" class="headerlink" title="（一）模数转化"></a><strong>（一）模数转化</strong></h3><ol>
+<li>采样-量化-编码<ul>
+<li>采样：时间上离散</li>
+<li>量化：幅度上离散（比如音量）</li>
+<li>编码：已离散的点用二进制编码表示</li>
+</ul>
+</li>
+<li>奈奎斯特定理</li>
+<li>AMR语音压缩算法<ul>
+<li>AMR-NB与AMR-WB</li>
+<li>Voice over LTE, VoLTE</li>
+</ul>
+</li>
+</ol>
+<h3 id="（二）4G、2G、5G语音的区别"><a href="#（二）4G、2G、5G语音的区别" class="headerlink" title="（二）4G、2G、5G语音的区别"></a><strong>（二）4G、2G、5G语音的区别</strong></h3><p><img src="https://s2.loli.net/2022/07/11/evBGlfyLPzItT7M.png" alt="image.png"></p>
+<ul>
+<li>2G频段的保留</li>
+<li>Circuit Switch,CS / Packet Switch,PS</li>
+<li>CS FallBack, CSFB / VoLTE</li>
+<li>5G语音<ul>
+<li>QCI, QoS Class Identifier  </li>
+<li>UE, eNB, S-GW P-GW, Peer-Entity</li>
+</ul>
+</li>
+</ul>
+<h2 id="七、复用技术"><a href="#七、复用技术" class="headerlink" title="七、复用技术"></a>七、复用技术</h2><blockquote>
+<p>提升速率：带宽、调制（QAM）、天线（MIMO）、编码（Polar码）、复用</p>
+</blockquote>
+<ul>
+<li>时分复用TDM</li>
+<li>频分复用FDM<blockquote>
+<p>隔离带;无线广播是一种典型的通过FDM来实现复用的商用案例</p>
+</blockquote>
+<ul>
+<li>OFDM：正交</li>
+<li><strong>OFDM + NOMA：</strong> mMTC–NOMA;eMBB,uRLLC–OFDM</li>
+</ul>
+</li>
+<li>码分复用CDM<ul>
+<li>正交、扩频</li>
+</ul>
+</li>
+</ul>
+<h2 id="其它："><a href="#其它：" class="headerlink" title="其它："></a>其它：</h2><h3 id="（一）传输网、核心网、承载网、接入网"><a href="#（一）传输网、核心网、承载网、接入网" class="headerlink" title="（一）传输网、核心网、承载网、接入网"></a><strong>（一）传输网、核心网、承载网、接入网</strong></h3><p><img src="https://s2.loli.net/2022/07/10/VRxUyYS8Ebn1szW.png" alt="架构图.png"></p>
+<p><img src="https://s2.loli.net/2022/07/10/8DWLKXR2tprIilE.png" alt="抽象的图.png"></p>
+<ul>
+<li><strong>传输网：</strong> 除了OTN还有PTN、微波、SDH的组网方式</li>
+<li><strong>接入网：</strong> 还分无线接入与有线接入</li>
+<li><strong>承载网：</strong> 其实是一个大的概念，分前传、中传和回传</li>
+<li><strong>核心网：</strong> 也是随着网络的演进不断地在更新演进</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+        <div id="donation_div"></div>
+
+
+<script src="../../../../js/vdonate.js"></script>
+
+<script>
+var a = new Donate({
+  title: '如果觉得我的文章对您有用，请随意打赏。您的支持将鼓励我继续创作!', // 可选参数，打赏标题
+  btnText: '打赏支持', // 可选参数，打赏按钮文字
+  el: document.getElementById('donation_div'),
+  wechatImage: 'https://pic3.zhimg.com/80/v2-ea5bb2685f8c6ad3392bfcb76a70e9d7_720w.jpg?source=1940ef5c',
+  alipayImage: 'https://pic3.zhimg.com/80/v2-7feeffaa075f9813a3c562abbd4b655c_720w.jpg?source=1940ef5c'
+});
+</script>
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>本文作者:  </strong>bowlmeat</a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>本文链接:  </strong>
+          <a href="/2022/03/10/5G/" target="_blank" title="5G">https://bowlmeat.github.io/2022/03/10/5G/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>版权声明:   </strong>
+            本博客所有文章除特别声明外，均采用 <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            许可协议。转载请注明出处
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../../../tags/%E8%AF%BE%E5%A4%96/" rel="tag">课外</a></li></ul>
+
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="../../15/SDL-Trados-Studio/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          SDL Trados Studio
+        
+      </div>
+    </a>
+  
+  
+    <a href="../../05/Search-Algorithm/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Search Algorithm</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#5G"><span class="nav-number">1.</span> <span class="nav-text">5G</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E9%A2%91%E7%8E%87%E4%B8%8E%E8%B0%83%E5%88%B6"><span class="nav-number">1.1.</span> <span class="nav-text">一、频率与调制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E9%A6%99%E5%86%9C%E7%9A%84%E8%AF%85%E5%92%92"><span class="nav-number">1.2.</span> <span class="nav-text">二、香农的诅咒</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E4%BF%A1%E9%81%93%E7%BC%96%E7%A0%81"><span class="nav-number">1.3.</span> <span class="nav-text">三、信道编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81Massive-MIMO"><span class="nav-number">1.4.</span> <span class="nav-text">四、Massive MIMO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81SA-NSA"><span class="nav-number">1.5.</span> <span class="nav-text">五、SA&#x2F;NSA</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89NSA%E4%B8%8B%E6%89%8B%E6%9C%BA%E5%A6%82%E4%BD%95%E5%B7%A5%E4%BD%9C"><span class="nav-number">1.5.1.</span> <span class="nav-text">（一）NSA下手机如何工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%89NSA%E4%B8%8B%E6%89%8B%E6%9C%BA%E5%A6%82%E4%BD%95%E7%A7%BB%E5%8A%A8"><span class="nav-number">1.5.2.</span> <span class="nav-text">（二）NSA下手机如何移动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%B8%89%EF%BC%89NSA%E4%B8%8B%E6%89%8B%E6%9C%BA%E4%BF%A1%E5%8F%B7%E5%A6%82%E4%BD%95%E6%98%BE%E7%A4%BA"><span class="nav-number">1.5.3.</span> <span class="nav-text">（三）NSA下手机信号如何显示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E7%A7%BB%E5%8A%A8%E9%80%9A%E4%BF%A1%E4%B8%AD%E7%9A%84%E8%AF%AD%E9%9F%B3%E4%BC%A0%E6%92%AD"><span class="nav-number">1.6.</span> <span class="nav-text">六、移动通信中的语音传播</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E6%A8%A1%E6%95%B0%E8%BD%AC%E5%8C%96"><span class="nav-number">1.6.1.</span> <span class="nav-text">（一）模数转化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%BA%8C%EF%BC%894G%E3%80%812G%E3%80%815G%E8%AF%AD%E9%9F%B3%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.6.2.</span> <span class="nav-text">（二）4G、2G、5G语音的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%A4%8D%E7%94%A8%E6%8A%80%E6%9C%AF"><span class="nav-number">1.7.</span> <span class="nav-text">七、复用技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E5%AE%83%EF%BC%9A"><span class="nav-number">1.8.</span> <span class="nav-text">其它：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EF%BC%88%E4%B8%80%EF%BC%89%E4%BC%A0%E8%BE%93%E7%BD%91%E3%80%81%E6%A0%B8%E5%BF%83%E7%BD%91%E3%80%81%E6%89%BF%E8%BD%BD%E7%BD%91%E3%80%81%E6%8E%A5%E5%85%A5%E7%BD%91"><span class="nav-number">1.8.1.</span> <span class="nav-text">（一）传输网、核心网、承载网、接入网</span></a></li></ol></li></ol></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2022 Bowlmeat&#39;s Blogs All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				访客数 : <span id="busuanzi_value_site_uv"></span> |  
+				访问量 : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="../../../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../../../archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="../../../../categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="../../../../tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="../../../../about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  
+<link rel="stylesheet" href="../../../../fancybox/jquery.fancybox.css">
+
+  
+<script src="../../../../fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="../../../../js/scripts.js"></script>
+
+
+
+
+
+  
+<script src="../../../../js/dialog.js"></script>
+
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            Bowlmeat&#39;s Blogs
+          </div>
+          <div class="panel-body">
+            Copyright © 2022 bowlmeat All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>
